@@ -109,8 +109,9 @@ public class ElementLoader {
 
 	//读取方块类型信息
 	public void readSquarePro() throws IOException{
-		InputStream inputStream;
-		
+		System.out.print(GameController.seeMode());
+
+		InputStream inputStream ;
 		if (GameController.seeMode()==1){
 			inputStream = 
 				ElementLoader.class.getClassLoader().getResourceAsStream(gameInfoMap.get("easyPath").get(0));
@@ -118,9 +119,8 @@ public class ElementLoader {
 		else if (GameController.seeMode()==2){
 			inputStream = 
 				ElementLoader.class.getClassLoader().getResourceAsStream(gameInfoMap.get("normalPath").get(0));
-				//System.out.print(gameInfoMap.get("normalPath").get(0));
 		}
-		else{
+		else {
 			inputStream = 
 				ElementLoader.class.getClassLoader().getResourceAsStream(gameInfoMap.get("hardPath").get(0));
 		}

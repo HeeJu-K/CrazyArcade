@@ -18,7 +18,7 @@ public class GameStart {
 			ElementLoader.getElementLoader().readImagePro();
 			ElementLoader.getElementLoader().readCharactorsPro();
 			ElementLoader.getElementLoader().readBubblePro();
-			ElementLoader.getElementLoader().readSquarePro();
+			//ElementLoader.getElementLoader().readSquarePro();
 		} catch (IOException e) {
 			System.out.println("◊ ‘¥º”‘ÿ ß∞‹");
 			e.printStackTrace();

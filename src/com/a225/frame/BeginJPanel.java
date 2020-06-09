@@ -54,12 +54,12 @@ public class BeginJPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				GameController.setMode(1);
-				// try {
-				// 	ElementLoader.getElementLoader().readSquarePro();
-				// } catch (IOException e) {
-				// 	System.out.println("资源加载失败");
-				// 	e.printStackTrace();
-				// }
+				try {
+					ElementLoader.getElementLoader().readSquarePro();
+				} catch (IOException e) {
+					System.out.println("资源加载失败");
+					e.printStackTrace();
+				}
 				GameStart.startNewGame();
 			}
 		});
@@ -76,12 +76,12 @@ public class BeginJPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				GameController.setMode(2);
-				// try {
-				// 	ElementLoader.getElementLoader().readSquarePro();
-				// } catch (IOException e) {
-				// 	System.out.println("资源加载失败");
-				// 	e.printStackTrace();
-				// }
+				try {
+					ElementLoader.getElementLoader().readSquarePro();
+				} catch (IOException e) {
+					System.out.println("资源加载失败");
+					e.printStackTrace();
+				}
 				GameStart.startNewGame();
 			}
 		});
@@ -97,13 +97,13 @@ public class BeginJPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				GameController.setMode(3);
-				// try {
-				// 	ElementLoader.getElementLoader().readSquarePro();
-				// 	System.out.println("difficult chosen");
-				// } catch (IOException e) {
-				// 	System.out.println("资源加载失败");
-				// 	e.printStackTrace();
-				// }
+				try {
+					ElementLoader.getElementLoader().readSquarePro();
+					System.out.println("difficult chosen");
+				} catch (IOException e) {
+					System.out.println("资源加载失败");
+					e.printStackTrace();
+				}
 				GameStart.startNewGame();
 			}
 		});

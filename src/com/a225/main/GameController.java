@@ -30,6 +30,7 @@ public class GameController {
 	}
 	public static void setMode(int difficulty) {
 		GameController.difficulty = difficulty;
+		System.out.println("here"+difficulty);
 	}
 	public static int getNpcNum() {
 		return npcNum;
