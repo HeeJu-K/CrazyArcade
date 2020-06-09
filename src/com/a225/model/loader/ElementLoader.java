@@ -138,6 +138,7 @@ public class ElementLoader {
 		InputStream inputStream = 
 				ElementLoader.class.getClassLoader().getResourceAsStream(gameInfoMap.get(mapPro).get(0));
 		properties.clear();
+		System.out.println("\ninputstream " + gameInfoMap.get(mapPro).toString());
 		properties.load(inputStream);
 		Set<Object> sortSet = new TreeSet<>(new Comparator<Object>() {
 			@Override

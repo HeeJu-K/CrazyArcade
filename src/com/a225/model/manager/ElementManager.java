@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.a225.main.GameController;
 import com.a225.model.loader.ElementLoader;
 import com.a225.model.vo.SuperElement;
 import com.a225.util.Utils;
@@ -113,8 +114,11 @@ public class ElementManager {
 	}
 	
 	public void loadMap(){
-		int mapNum = Integer.parseInt(ElementLoader.getElementLoader().getGameInfoMap().get("mapNum").get(0));
-		gameMap.createMap("stage"+(Utils.random.nextInt(mapNum)+1)+"Map");
+		
+		//int mapNum = Integer.parseInt(ElementLoader.getElementLoader().getGameInfoMap().get("mapNum").get(0));
+		// gameMap.createMap("stage"+(Utils.random.nextInt(mapNum)+1)+"Map");
+		gameMap.createMap("stage"+GameController.seeMode()+"Map");
+		//System.out.println("mapNum"+mapNum+"rest"+(Utils.random.nextInt(mapNum)+1));
 	}
 
 	public void overGame(Boolean over) {
