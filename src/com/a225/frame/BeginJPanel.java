@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -41,39 +43,74 @@ public class BeginJPanel extends JPanel{
 		jLabel2.setBounds(w/2, h/6, 600, 800);
 		jLabel2.setVisible(false);
 		
-		JButton onePlayerButton = new JButton();
-		onePlayerButton.setIcon(ElementLoader.getElementLoader().getImageMap().get("rect1"));
-		onePlayerButton.setBounds(w/6, h/3, 180, 60);
-		onePlayerButton.setBorderPainted(false);
-		onePlayerButton.setFocusPainted(false);
-		onePlayerButton.setContentAreaFilled(false);
-		onePlayerButton.addActionListener(new ActionListener() {
+		JButton easyModeButton = new JButton();
+		easyModeButton.setIcon(ElementLoader.getElementLoader().getImageMap().get("rect1"));
+		easyModeButton.setBounds(w/6, h/6 + 100, 300, 80);
+		easyModeButton.setBorderPainted(false);
+		easyModeButton.setFocusPainted(false);
+		easyModeButton.setContentAreaFilled(false);
+		easyModeButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				GameController.setTwoPlayer(false);
+				GameController.setMode(1);
+				// try {
+				// 	ElementLoader.getElementLoader().readSquarePro();
+				// } catch (IOException e) {
+				// 	System.out.println("资源加载失败");
+				// 	e.printStackTrace();
+				// }
 				GameStart.startNewGame();
 			}
 		});
+
 		
-		JButton twoPlayerButton = new JButton();
-		twoPlayerButton.setIcon(ElementLoader.getElementLoader().getImageMap().get("rect2"));
-		twoPlayerButton.setBounds(w/6, h/2, 180, 60);
-		twoPlayerButton.setBorderPainted(false);
-		twoPlayerButton.setFocusPainted(false);
-		twoPlayerButton.setContentAreaFilled(false);
-		twoPlayerButton.addActionListener(new ActionListener() {
+		JButton normalModeButton = new JButton();
+		normalModeButton.setIcon(ElementLoader.getElementLoader().getImageMap().get("rect2"));
+		normalModeButton.setBounds(w/6, h/6 + 200, 300, 80);
+		normalModeButton.setBorderPainted(false);
+		normalModeButton.setFocusPainted(false);
+		normalModeButton.setContentAreaFilled(false);
+		normalModeButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				GameController.setTwoPlayer(true);
+				GameController.setMode(2);
+				// try {
+				// 	ElementLoader.getElementLoader().readSquarePro();
+				// } catch (IOException e) {
+				// 	System.out.println("资源加载失败");
+				// 	e.printStackTrace();
+				// }
+				GameStart.startNewGame();
+			}
+		});
+
+		JButton hardModeButton = new JButton();
+		hardModeButton.setIcon(ElementLoader.getElementLoader().getImageMap().get("rect3"));
+		hardModeButton.setBounds(w/6, h/6 + 300, 300, 80);
+		hardModeButton.setBorderPainted(false);
+		hardModeButton.setFocusPainted(false);
+		hardModeButton.setContentAreaFilled(false);
+		hardModeButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				GameController.setMode(3);
+				// try {
+				// 	ElementLoader.getElementLoader().readSquarePro();
+				// 	System.out.println("difficult chosen");
+				// } catch (IOException e) {
+				// 	System.out.println("资源加载失败");
+				// 	e.printStackTrace();
+				// }
 				GameStart.startNewGame();
 			}
 		});
 
 		JButton magicBoxButton = new JButton();
-		magicBoxButton.setIcon(new ImageIcon("img/bg/rect3.png"));
-		magicBoxButton.setBounds(w/6, h-h/3, 180, 60);
+		magicBoxButton.setIcon(new ImageIcon("img/bg/rect4.png"));
+		magicBoxButton.setBounds(w/6, h/6 + 400, 300, 80);
 		magicBoxButton.setBorderPainted(false);
 		magicBoxButton.setFocusPainted(false);
 		magicBoxButton.setContentAreaFilled(false);
@@ -89,8 +126,9 @@ public class BeginJPanel extends JPanel{
 				}
 			}
 		});
-		this.add(onePlayerButton);
-		this.add(twoPlayerButton);
+		this.add(easyModeButton);
+		this.add(normalModeButton);
+		this.add(hardModeButton);
 		this.add(magicBoxButton);
 		this.add(jLabel2);
 		this.add(jLabel);

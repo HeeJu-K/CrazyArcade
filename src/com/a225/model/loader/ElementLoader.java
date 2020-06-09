@@ -1,5 +1,7 @@
 package com.a225.model.loader;
 
+import com.a225.main.GameController;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -107,8 +109,21 @@ public class ElementLoader {
 
 	//读取方块类型信息
 	public void readSquarePro() throws IOException{
-		InputStream inputStream = 
-				ElementLoader.class.getClassLoader().getResourceAsStream(gameInfoMap.get("squareProPath").get(0));
+		InputStream inputStream;
+		
+		if (GameController.seeMode()==1){
+			inputStream = 
+				ElementLoader.class.getClassLoader().getResourceAsStream(gameInfoMap.get("easyPath").get(0));
+		}
+		else if (GameController.seeMode()==2){
+			inputStream = 
+				ElementLoader.class.getClassLoader().getResourceAsStream(gameInfoMap.get("normalPath").get(0));
+				//System.out.print(gameInfoMap.get("normalPath").get(0));
+		}
+		else{
+			inputStream = 
+				ElementLoader.class.getClassLoader().getResourceAsStream(gameInfoMap.get("hardPath").get(0));
+		}
 		properties.clear();
 		properties.load(inputStream);
 		for(Object o:properties.keySet()) {
@@ -135,7 +150,7 @@ public class ElementLoader {
 					} else if (a>b) {
 						return -1;
 					} else {
-						return 0;					
+						return 0;
 					}
 				} catch (Exception e) {
 					return -1;

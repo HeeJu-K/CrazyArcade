@@ -2,11 +2,11 @@
 #格式：XXX=图片全路径
 #键值请注意不要重复
 #窗口
-beginBackground=img/bg/title.png
+beginBackground=img/bg/background.jpg
 gameOver=img/bg/gameover.png
-rect1=img/bg/rect1.png
-rect2=img/bg/rect2.png
-rect3=img/bg/rect3.png
+rect1=img/bg/easy.jpg
+rect2=img/bg/normal.jpg
+rect3=img/bg/difficult.jpg
 rect4=img/bg/rect4.png
 #玩家
 PlayerA=img/player/player1.png

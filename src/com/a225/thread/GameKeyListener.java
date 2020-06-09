@@ -53,31 +53,31 @@ public class GameKeyListener implements KeyListener{
 		default://其它按键无视
 			break;
 		}
-		if(GameController.isTwoPlayer()) {
-			Player player2 = (Player) list.get(1);
-			switch (code) {
-			case 32:
-				if(player2.isKeepAttack())
-					player2.setAttack(false);
-				else {
-					player2.setKeepAttack(true);
-					player2.setAttack(true);
-				}
-				break;
-			case 65:
-			case 87:
-			case 68:
-			case 83:
-				if(!p2PressStack.contains(code)) {
-					p2PressStack.push(code);
-				}
-				player2.setMoveType(MoveTypeEnum.codeToMoveType(code));
-				break;
+		// if(GameController.isTwoPlayer()) {
+		// 	Player player2 = (Player) list.get(1);
+		// 	switch (code) {
+		// 	case 32:
+		// 		if(player2.isKeepAttack())
+		// 			player2.setAttack(false);
+		// 		else {
+		// 			player2.setKeepAttack(true);
+		// 			player2.setAttack(true);
+		// 		}
+		// 		break;
+		// 	case 65:
+		// 	case 87:
+		// 	case 68:
+		// 	case 83:
+		// 		if(!p2PressStack.contains(code)) {
+		// 			p2PressStack.push(code);
+		// 		}
+		// 		player2.setMoveType(MoveTypeEnum.codeToMoveType(code));
+		// 		break;
 			
-			default:
-				break;
-			}
-		}
+		// 	default:
+		// 		break;
+		// 	}
+		// }
 	}
 
 	
@@ -111,35 +111,35 @@ public class GameKeyListener implements KeyListener{
 				break;
 			}
 		}
-		if(GameController.isTwoPlayer()) {
-			Player player2 = (Player) list.get(1);
-			if(!player2.isDead()) {
-				switch (code) {
-				case 32:
-					player2.setAttack(false);
-					player2.setKeepAttack(false);
-					break;
-				case 65:
-				case 87:
-				case 68:
-				case 83:
-					if(p2PressStack.peek()!=code) {
-						p2PressStack.remove(new Integer(code));
-					} else {
-						p2PressStack.pop();
-						if(p2PressStack.size()==0) {
-							player2.setMoveType(MoveTypeEnum.STOP);
-						} else {
-							player2.setMoveType(MoveTypeEnum.codeToMoveType(p2PressStack.peek()));
-						}
-					}
-					break;
-				default:
-					break;
-				}
-			}
+		// if(GameController.isTwoPlayer()) {
+		// 	Player player2 = (Player) list.get(1);
+		// 	if(!player2.isDead()) {
+		// 		switch (code) {
+		// 		case 32:
+		// 			player2.setAttack(false);
+		// 			player2.setKeepAttack(false);
+		// 			break;
+		// 		case 65:
+		// 		case 87:
+		// 		case 68:
+		// 		case 83:
+		// 			if(p2PressStack.peek()!=code) {
+		// 				p2PressStack.remove(new Integer(code));
+		// 			} else {
+		// 				p2PressStack.pop();
+		// 				if(p2PressStack.size()==0) {
+		// 					player2.setMoveType(MoveTypeEnum.STOP);
+		// 				} else {
+		// 					player2.setMoveType(MoveTypeEnum.codeToMoveType(p2PressStack.peek()));
+		// 				}
+		// 			}
+		// 			break;
+		// 		default:
+		// 			break;
+		// 		}
+		// 	}
 			
-		}
+		// }
 	}
 
 	@Override

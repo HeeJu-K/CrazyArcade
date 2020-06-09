@@ -121,16 +121,16 @@ public class GameMap {
 					initPlayer(i, j, 0);
 					break;
 				case '7':
-					if(GameController.isTwoPlayer())
-						initPlayer(i, j, 1);
-					else {
-						switch (type.charAt(1)) {
-						case '1':elmenteMap.get("npc").add(Npc.createNpc(gameInfoMap.get("npcA"), i, j, npcNum++));break;
-						case '2':elmenteMap.get("npc").add(Npc.createNpc(gameInfoMap.get("npcB"), i, j, npcNum++));break;
-						case '3':elmenteMap.get("npc").add(Npc.createNpc(gameInfoMap.get("npcC"), i, j, npcNum++));break;
-						default:break;
-						}
-					}
+					// if(GameController.isTwoPlayer())
+					// 	initPlayer(i, j, 1);
+					// else {
+					// 	switch (type.charAt(1)) {
+					// 	case '1':elmenteMap.get("npc").add(Npc.createNpc(gameInfoMap.get("npcA"), i, j, npcNum++));break;
+					// 	case '2':elmenteMap.get("npc").add(Npc.createNpc(gameInfoMap.get("npcB"), i, j, npcNum++));break;
+					// 	case '3':elmenteMap.get("npc").add(Npc.createNpc(gameInfoMap.get("npcC"), i, j, npcNum++));break;
+					// 	default:break;
+					// 	}
+					// }
 					break;
 				case '8':
 					switch (type.charAt(1)) {
@@ -174,11 +174,11 @@ public class GameMap {
 	 */
 	private void initPlayer(int i, int j, int num) {
 		List<SuperElement> playerList = ElementManager.getManager().getMap().get("player");
-		if(playerList.size()==(GameController.isTwoPlayer()?2:1)) {
-			List<Integer> locList = GameMap.getXY(i,j);
-			playerList.get(num).setX(locList.get(0));
-			playerList.get(num).setY(locList.get(1));
-		} else {
+		// if(playerList.size()==(GameController.isTwoPlayer()?2:1)) {
+		// 	List<Integer> locList = GameMap.getXY(i,j);
+		// 	playerList.get(num).setX(locList.get(0));
+		// 	playerList.get(num).setY(locList.get(1));
+		// } else {
 			Map<String, List<String>> gameInfoMap = ElementLoader.getElementLoader().getGameInfoMap();
 			for(SuperElement se:playerList) {
 				Player player = (Player) se;
@@ -195,7 +195,7 @@ public class GameMap {
 				return;
 			}
 			playerList.add(num, player);				
-		}
+		//}
 	}
 	
 	/**

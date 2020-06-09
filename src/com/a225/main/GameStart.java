@@ -6,13 +6,7 @@ import com.a225.frame.GameFrame;
 import com.a225.model.loader.ElementLoader;
 import com.a225.thread.GameMusicPlayer;
 
-/**
- * 游戏启动入口
- * @ClassName: GameStart  
- * @Description:  
- * @author: WeiXiao
- * @CreateDate: 2019年4月8日 下午4:17:37
- */
+
 public class GameStart {
 	private static GameFrame gameFrame;
 

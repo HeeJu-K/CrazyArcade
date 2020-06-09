@@ -18,4 +18,7 @@ stage2Map=com/a225/pro/stage2/Map.pro
 stage3Map=com/a225/pro/stage3/Map.pro
 
 #方块类型配置文件
-squareProPath=com/a225/pro/Square.pro
+easyPath = com/a225/pro/easy.pro
+normalPath=com/a225/pro/normal.pro
+hardPath=com/a225/pro/hard.pro
+#squareProPath=com/a225/pro/Square.pro

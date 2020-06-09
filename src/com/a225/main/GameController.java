@@ -10,6 +10,7 @@ package com.a225.main;
 public class GameController {
 	private static boolean gameRunning = false;
 	private static boolean twoPlayer;
+	private static int difficulty;
 	private static int npcNum;
 	
 	public static boolean isGameRunning() {
@@ -18,11 +19,17 @@ public class GameController {
 	public static void setGameRunning(boolean gameRunning) {
 		GameController.gameRunning = gameRunning;
 	}
-	public static boolean isTwoPlayer() {
-		return twoPlayer;
+	// public static boolean isTwoPlayer() {
+	// 	return twoPlayer;
+	// }
+	// public static void setTwoPlayer(boolean twoPlayer) {
+	// 	GameController.twoPlayer = twoPlayer;
+	// }
+	public static int seeMode() {
+		return difficulty;
 	}
-	public static void setTwoPlayer(boolean twoPlayer) {
-		GameController.twoPlayer = twoPlayer;
+	public static void setMode(int difficulty) {
+		GameController.difficulty = difficulty;
 	}
 	public static int getNpcNum() {
 		return npcNum;
