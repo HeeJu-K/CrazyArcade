@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 
+import com.a225.main.GameStart;
 import com.a225.model.loader.ElementLoader;
 import com.a225.model.manager.ElementManager;
 import com.a225.model.manager.GameMap;
@@ -101,6 +102,9 @@ public class Bubble extends SuperElement{
 				List<SuperElement> list2 = ElementManager.getManager().getElementList("player");
 				Player player = (Player) list2.get(playerNum);
 				player.setBubbleNum(player.getBubbleNum()-1);
+				//GameStart.gameFrame.setPanelBubbleNum(player.getBubbleNum());
+				//GameStart.gameFrame.setPanelBubbleStrength(power);
+				//System.out.println("in Bubble" + player.getBubbleNum());
 				explodeList.add(BubbleExplode.createExplode(getX(), getY(), power,playerNum));
 			}
 			else {

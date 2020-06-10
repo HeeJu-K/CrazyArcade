@@ -32,7 +32,7 @@ public class GameKeyListener implements KeyListener{
 		Player player1 = (Player) list.get(0);
 		
 		int code = e.getKeyCode();
-		System.out.println("key! "+code);
+		//System.out.println("key! "+code);
 		switch (code) {
 		case 10://炸弹键
 			if(player1.isKeepAttack())//不允许一直按着炸弹键，每次只能放一个炸弹

@@ -8,7 +8,7 @@ import com.a225.thread.GameMusicPlayer;
 
 
 public class GameStart {
-	private static GameFrame gameFrame;
+	public static GameFrame gameFrame;
 
 	//游戏启动入口
 	public static void main(String[] args) {

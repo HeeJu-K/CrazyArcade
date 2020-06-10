@@ -138,5 +138,12 @@ public class GameFrame extends JFrame {
 	public void setStatusPanel(StatusPanel statuspanel){
 		this.statuspanel = statuspanel;
 	}
-	
+
+	public void setPanelBubbleNum(int num) {
+		this.statuspanel.setPanelBubbleNum(num);
+	}
+	public void setPanelBubbleStrength(int num){
+		this.statuspanel.setPanelBubbleStrength(num);
+	}
+
 }

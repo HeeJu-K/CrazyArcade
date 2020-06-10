@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 
+import com.a225.frame.GameFrame;
 import com.a225.model.loader.ElementLoader;
 import com.a225.model.manager.ElementManager;
 import com.a225.model.manager.GameMap;
