@@ -42,8 +42,8 @@ public class OverJPanel extends JPanel {
 		jLabel.setBounds(0, 0, w, h);
 		
 		JButton restart = new JButton();
-		restart.setIcon(ElementLoader.getElementLoader().getImageMap().get("rect4"));
-		restart.setBounds(w/2-90, h-h/4, 180, 60);
+		restart.setIcon(ElementLoader.getElementLoader().getImageMap().get("restart"));
+		restart.setBounds(0, h-h/3, 256, 94);
 		restart.setBorderPainted(false);
 		restart.setFocusPainted(false);
 		restart.setContentAreaFilled(false);
@@ -54,18 +54,24 @@ public class OverJPanel extends JPanel {
 			}
 		});
 		
-		result.setFont(new Font("Times New Roman", Font.BOLD, 48));
-		result.setBounds(w/2-150, h-3*(h/7), 300, 80);
-		result.setHorizontalTextPosition(SwingConstants.CENTER);
-		result.setVerticalTextPosition(SwingConstants.CENTER);
-		result.setBorderPainted(false);
-		result.setContentAreaFilled(false);
-		result.setEnabled(false);
-		result.setForeground(new Color(255, 153, 0));
+		JButton quit = new JButton();
+		quit.setIcon(ElementLoader.getElementLoader().getImageMap().get("quit"));
+		quit.setBounds(w/2, h-h/3, 256, 70);
+		quit.setBorderPainted(false);
+		quit.setFocusPainted(false);
+		quit.setContentAreaFilled(false);
+		quit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
 
-		this.add(result);
+
 		this.add(restart);
+		this.add(quit);
 		this.add(jLabel);
+	
 		
 		this.setVisible(true);
 		this.setOpaque(true);

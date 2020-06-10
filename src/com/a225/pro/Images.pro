@@ -3,11 +3,13 @@
 #键值请注意不要重复
 #窗口
 beginBackground=img/bg/background.jpg
-gameOver=img/bg/gameover.png
+gameOver=img/bg/gameover.jpg
 rect1=img/bg/easy.jpg
 rect2=img/bg/normal.jpg
 rect3=img/bg/difficult.jpg
-rect4=img/bg/rect4.png
+rect4=img/bg/rect3.png
+restart=img/bg/restart.jpg
+quit=img/bg/quit.jpg
 #玩家
 PlayerA=img/player/player1.png
 PlayerB=img/player/player2.png
@@ -33,6 +35,9 @@ explodeDown=img/boom/down.png
 explodeLeft=img/boom/left.png
 explodeRight=img/boom/right.png
 explodeCenter=img/boom/center.png
+bubbleMode1=img/boom/bubbleMode1.png
+bubbleMode2=img/boom/bubbleMode2.png
+
 #npcA图片路径
 npcA0=img/computer/1/down.png
 npcA1=img/computer/1/left.png

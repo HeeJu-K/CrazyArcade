@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 import com.a225.model.manager.ElementManager;
 import com.a225.model.manager.MoveTypeEnum;
 
@@ -19,6 +20,7 @@ public class Character extends SuperElement{
 	public final static int INIT_SPEED = 4; //初始移动速度
 	
 	protected boolean dead;//记录是否存活
+	protected boolean bubbleMode;//记录是否濒死状态
 	protected MoveTypeEnum moveType;
 	protected int speed;//移动速度
 	protected int speedItemCount;//生效中的加速卡数量
@@ -52,21 +54,44 @@ public class Character extends SuperElement{
 	}
 	
 	public void setHealthPoint(int change) {
-		if(change<0)
-		{
+		if(change<0){
 			if(isUnstoppable)return;
 			setUnstoppable(3);//生命值减少时，无敌一段时间
 		}
 		heathPoint += change;
 //		生命值为0，死亡
-		if(heathPoint<=0) 
-		{
+		if(heathPoint<=0) {
+			setBubble(true);
+			setNearDeath();
+		}
+	}
+
+	public void setNearDeath(){
+		if (isBubble() == true){
+			// speed = speed/4;
+			// Timer timer = new Timer(true);
+			// speedItemCount++;
+			// TimerTask task = new TimerTask() {
+			// 	@Override
+			// 	public void run() {
+			// 		speedItemCount--;
+			// 		if(speedItemCount==0) {
+			// 			setDead(true);
+			// 			setX(-100);
+			// 			setY(-100);					
+			// 		}
+			// 	}
+			// };
+			// timer.schedule(task, 50000000);
+			long startTime = System.currentTimeMillis(); //程序开始记录时间
+			while ( System.currentTimeMillis() - startTime < 5){
+				System.out.println( System.currentTimeMillis() - startTime);
+			}
 			setDead(true);
 			setX(-100);
 			setY(-100);
 		}
 	}
-	
 
 
 	//	改变一段时间的移动速度,传入速度需要提升的倍数和持续的时间（秒）
@@ -203,8 +228,14 @@ public class Character extends SuperElement{
 	@Override
 	public void destroy() {}
 	
-
+	public boolean isBubble(){
+		return bubbleMode;
+	}
 	
+	public void setBubble(boolean bubbleMode){
+		this.bubbleMode = bubbleMode;
+	}
+
 	public boolean isDead() {
 		return dead;
 	}
