@@ -101,7 +101,7 @@ public class Bubble extends SuperElement{
 			if(playerNum<2) {
 				List<SuperElement> list2 = ElementManager.getManager().getElementList("player");
 				Player player = (Player) list2.get(playerNum);
-				player.setBubbleNum(player.getBubbleNum()-1);
+				player.setBubbleNum(player.getBubbleNum()-1); 
 				//GameStart.gameFrame.setPanelBubbleNum(player.getBubbleNum());
 				//GameStart.gameFrame.setPanelBubbleStrength(power);
 				//System.out.println("in Bubble" + player.getBubbleNum());
