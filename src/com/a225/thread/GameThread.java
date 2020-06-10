@@ -12,6 +12,7 @@ import com.a225.model.vo.MapFragility;
 import com.a225.model.vo.Npc;
 import com.a225.model.vo.Player;
 import com.a225.model.vo.SuperElement;
+import com.a225.model.vo.Character;
 
 /**
  * 游戏线程控制
@@ -23,9 +24,8 @@ public class GameThread extends Thread{
 	private boolean over = false; //表示游戏是否结束，结束返回开始菜单
 	private static int sleepTime = 20; //runGame刷新时间
 	//倒计时变量
-	private static int allTime = 600*1000; //10分钟
+	private static int runTime = 300*1000; //5分钟
 
-	
 	@Override
 	public void run() {
 		while(!over) {
@@ -56,7 +56,7 @@ public class GameThread extends Thread{
 	
 	//显示人物，游戏流程，自动化
 	private void runGame() {
-		allTime = 600*1000;
+		runTime = 300*1000;
 		while(running) {
 			Map<String, List<SuperElement>> map = ElementManager.getManager().getMap();
 			Set<String> set = map.keySet();
@@ -85,7 +85,7 @@ public class GameThread extends Thread{
 			defeat();
 			
 			//控制runGame进程
-			allTime = allTime - sleepTime;
+			runTime = runTime - sleepTime;
 			try {	
 				sleep(20);
 			} catch (InterruptedException e) {
@@ -113,10 +113,10 @@ public class GameThread extends Thread{
 		}
 		
 		//玩家失败
-		if(surviveP==0||(allTime<=0 && !allDead)) {
+		if(surviveP==0||(runTime<=0 && !allDead)) {
 			running = false;
 			over = true;
-			OverJPanel.getResult().setText("defeated");
+			OverJPanel.getResult().setText("LOSE");
 		}
 		//玩家胜利
 		if(allDead&&surviveP==1) {
@@ -128,17 +128,17 @@ public class GameThread extends Thread{
 					winner = ((Player)se).getPlayerNum();
 				}
 			}
-			OverJPanel.getResult().setText("player "+(winner+1)+" win");
+			OverJPanel.getResult().setText("WIN");
 		}
 		
 		//时间到，两个玩家都活着
-		if(allTime<=0&&surviveP==2&&allDead) {
+		if(runTime<=0&&surviveP==2&&allDead) {
 			running = false;
 			over = true;
 			int score1 = ((Player)playerList.get(0)).score;
 			int score2 = ((Player)playerList.get(0)).score;
 			if(score1==score2) {
-				OverJPanel.getResult().setText("defeated");
+				OverJPanel.getResult().setText("DRAW");
 			}
 			else if(score1>score2)
 			{
@@ -238,8 +238,8 @@ public class GameThread extends Thread{
 	public void linkGame() {}
 	
 
-	public static int getAllTime() {
-		return allTime;
+	public static int getRunTime() {
+		return runTime;
 	}
 
 

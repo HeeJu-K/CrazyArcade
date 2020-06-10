@@ -43,7 +43,7 @@ public class OverJPanel extends JPanel {
 		
 		JButton restart = new JButton();
 		restart.setIcon(ElementLoader.getElementLoader().getImageMap().get("restart"));
-		restart.setBounds(0, h-h/3, 256, 94);
+		restart.setBounds(w/4, h-h/4, 256, 70);
 		restart.setBorderPainted(false);
 		restart.setFocusPainted(false);
 		restart.setContentAreaFilled(false);
@@ -56,7 +56,7 @@ public class OverJPanel extends JPanel {
 		
 		JButton quit = new JButton();
 		quit.setIcon(ElementLoader.getElementLoader().getImageMap().get("quit"));
-		quit.setBounds(w/2, h-h/3, 256, 70);
+		quit.setBounds(w/4 + 400, h-h/4, 256, 70);
 		quit.setBorderPainted(false);
 		quit.setFocusPainted(false);
 		quit.setContentAreaFilled(false);

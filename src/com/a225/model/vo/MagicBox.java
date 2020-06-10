@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.ImageIcon;
 
 import com.a225.model.loader.ElementLoader;
@@ -73,11 +76,38 @@ public class MagicBox extends MapSquare{
 		int dy = Integer.parseInt(data.get(4));
 		int scaleX = Integer.parseInt(data.get(6));
 		int scaleY = Integer.parseInt(data.get(7));
-		ImageIcon img = ElementLoader.getElementLoader().getImageMap().get(data.get(0));
-		MagicBox magicBox = new MagicBox(i, j, img, sx, sy, dx, dy, scaleX, scaleY, boxtype);
+		MagicBox magicBox;
+		
+		Timer timer = new Timer(true);
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				ImageIcon img = ElementLoader.getElementLoader().getImageMap().get(data.get(0));
+				MagicBox magicBox = new MagicBox(i, j, img, sx, sy, dx, dy, scaleX, scaleY, boxtype);
+			}
+		};
+		timer.schedule(task, 2500);
+		
+		ImageIcon img = ElementLoader.getElementLoader().getImageMap().get("mapObstacle");
+		magicBox = new MagicBox(i, j, img, sx, sy, dx, dy, scaleX, scaleY, boxtype);
+
+		
 		return magicBox;
 	}
 	
+	
+	public void timeUp(MagicBox se){
+		long countTime = System.currentTimeMillis(); //程序开始记录时间
+	
+		while ( System.currentTimeMillis() - countTime < 2000){
+				// System.out.println( System.currentTimeMillis() - countTime);
+			}
+		GameMap gameMap = ElementManager.getManager().getGameMap();
+		List<Integer> list = GameMap.getIJ(getX(), getY());
+		gameMap.setBlockSquareType(list.get(0), list.get(1), GameMap.SquareType.FLOOR);
+		updateImage();
+
+	}
 //	重写crash方法，缩小碰撞体积
 	@Override
 	public boolean crash(SuperElement se) {
@@ -109,6 +139,7 @@ public class MagicBox extends MapSquare{
 	@Override
 	public void destroy() {
 		if(eaten){	
+			
 //			将被摧毁方块设置为地板
 			GameMap gameMap = ElementManager.getManager().getGameMap();
 			List<Integer> list = GameMap.getIJ(getX(), getY());

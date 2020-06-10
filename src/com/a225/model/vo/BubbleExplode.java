@@ -97,10 +97,19 @@ public class BubbleExplode extends SuperElement{
 	public boolean crash(SuperElement se) {
 		int bias = 8;
 		Rectangle explodeColumn = 
-				new Rectangle(getX()+bias, getY()-getUp()*MapSquare.PIXEL_Y+bias, MapSquare.PIXEL_X-bias, (getUp()+getDown()+1)*MapSquare.PIXEL_Y-bias);//水泡爆炸十字纵向
+				new Rectangle(
+					getX()+bias, 
+					getY()-getUp()*MapSquare.PIXEL_Y+bias, 
+					MapSquare.PIXEL_X-bias, 
+					(getUp()+getDown()+1)*MapSquare.PIXEL_Y-bias);//水泡爆炸十字纵向
 		Rectangle explodeRow =  
-				new Rectangle(getX()-getLeft()*MapSquare.PIXEL_X+bias, getY()+bias, (getLeft()+getRight()+1)*MapSquare.PIXEL_X-bias, MapSquare.PIXEL_Y-bias);//水泡爆炸十字横向
-		Rectangle rectangle = new Rectangle(se.getX()+bias, se.getY()+bias, se.getW()-bias, se.getH()-bias);
+				new Rectangle(
+					getX()-getLeft()*MapSquare.PIXEL_X+bias, 
+					getY()+bias, 
+					(getLeft()+getRight()+1)*MapSquare.PIXEL_X-bias, 
+					MapSquare.PIXEL_Y-bias);//水泡爆炸十字横向
+		Rectangle rectangle = new Rectangle(
+			se.getX()+bias, se.getY()+bias, se.getW()-bias, se.getH()-bias);
 		boolean column = explodeColumn.intersects(rectangle);
 		boolean row = explodeRow.intersects(rectangle);
 		return (column||row);

@@ -14,6 +14,7 @@ import com.a225.model.manager.ElementManager;
 import com.a225.model.manager.GameMap;
 import com.a225.model.manager.MoveTypeEnum;
 import com.a225.util.Utils;
+import com.a225.model.vo.Character;
 
 
 /**

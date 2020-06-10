@@ -2,7 +2,12 @@ package com.a225.frame;
 
 import java.awt.CardLayout;
 import java.awt.event.KeyListener;
+import java.awt.Dimension;
+import java.awt.Component;
 import java.util.List;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import com.a225.model.loader.ElementLoader;
@@ -16,6 +21,8 @@ public class GameFrame extends JFrame {
 	private OverJPanel overJPanel;//结束画板
 	private KeyListener keyListener; //游戏按键
 	private CardLayout layout;//卡片布局
+	private StatusPanel statuspanel;
+	private JPanel container;
 
 	
 	public GameFrame() {
@@ -60,27 +67,50 @@ public class GameFrame extends JFrame {
 //	游戏启动
 	public void startGame() {
 		//新建游戏面板
+		this.container = new JPanel();
+		container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
 		gameJPanel = new GameJPanel();
-		//添加进入frame
-		contentPane.add("game",gameJPanel);
-		//线程启动
+		statuspanel = new StatusPanel();
+
+		gameJPanel.setPreferredSize(new Dimension(1000, 1000));
+		gameJPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+		container.add(statuspanel);
+		container.add(gameJPanel);
+
+		//??????frame
+		contentPane.add("game",container);
+		//contentPane.add("game",gameJPanel);
+
+		//???????
 		GameThread gameThread = new GameThread();
 		gameThread.start();
-		//界面刷新线程启动
+		//??????????????
 		if(gameJPanel instanceof Runnable) {
 			new Thread(gameJPanel).start();
 		}
 	}
 	
-//	绑定监听
+//	?????
 	public void addListener() {
-		if(keyListener!=null)
+		if(keyListener!=null){
 			this.addKeyListener(keyListener);
+
+			this.gameJPanel.addKeyListener(keyListener);
+			this.gameJPanel.setFocusable(true);
+			this.gameJPanel.requestFocusInWindow();
+
+			this.statuspanel.addKeyListener(keyListener);
+			this.statuspanel.setFocusable(true);
+			this.statuspanel.requestFocusInWindow();
+		}
 	}
 	
-//	移除监听
+//	???????
 	public void removeListener() {
 		this.removeKeyListener(keyListener);
+		this.gameJPanel.removeKeyListener(keyListener);
+		this.statuspanel.removeKeyListener(keyListener);
 	}
 	
 	
@@ -104,6 +134,9 @@ public class GameFrame extends JFrame {
 	public void setGameJPanel(GameJPanel gameJPanel) {
 		this.gameJPanel = gameJPanel;
 	}
-	
+
+	public void setStatusPanel(StatusPanel statuspanel){
+		this.statuspanel = statuspanel;
+	}
 	
 }
