@@ -73,7 +73,7 @@ public class GameFrame extends JFrame {
 		statuspanel = new StatusPanel();
 
 		gameJPanel.setPreferredSize(new Dimension(1000, 1000));
-		gameJPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		gameJPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
 		container.add(statuspanel);
 		container.add(gameJPanel);

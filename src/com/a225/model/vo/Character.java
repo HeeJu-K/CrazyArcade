@@ -83,10 +83,10 @@ public class Character extends SuperElement{
 			// 	}
 			// };
 			// timer.schedule(task, 50000000);
-			long startTime = System.currentTimeMillis(); //程序开始记录时间
-			while ( System.currentTimeMillis() - startTime < 500){
-				System.out.println( System.currentTimeMillis() - startTime);
-			}
+			// long startTime = System.currentTimeMillis(); //程序开始记录时间
+			// while ( System.currentTimeMillis() - startTime < 500){
+			// 	System.out.println( System.currentTimeMillis() - startTime);
+			// }
 			setDead(true);
 			setX(-100);
 			setY(-100);

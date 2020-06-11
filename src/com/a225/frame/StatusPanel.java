@@ -28,50 +28,82 @@ import com.a225.model.vo.Character;
  * 窗体容器：画板类
  */
 public class StatusPanel extends JPanel {
-    
-    private int panelBubbleStrength = 1;
 
     private JLabel name;
     private JLabel power;
-    private JLabel panelBubbleNum;
+    private JLabel bubNum;
 
     StatusPanel(){
         List<SuperElement> list = ElementManager.getManager().getElementList("player");
         System.out.println(" test " + list.size());
         // Player player = (Player) list.get(0);
         // System.out.println("bubble num + " + player.getBubbleNum());
-        this.setLayout(new GridLayout(4, 1));
+        this.setLayout(new GridBagLayout());
         this.setVisible(true);
+        GridBagConstraints main = new GridBagConstraints();
+        main.fill = GridBagConstraints.HORIZONTAL;
 
-        JLabel playerStatus = new JLabel("Player Status");
-        playerStatus.setLayout(new GridLayout(2, 2));
         JLabel profile = new JLabel();
-        profile.setIcon(ElementLoader.getElementLoader().getImageMap().get("PlayerA"));
-        profile.setBounds(0, 100, 256, 70);
-        playerStatus.add(profile);
-        name = new JLabel("name");
-        power = new JLabel("power:");
-        power.setText(getPanelBubbleStrength());
-        panelBubbleNum = new JLabel("number:");
-        this.setPanelBubbleNum(1);
-        playerStatus.add(name);
-        playerStatus.add(power);
-        playerStatus.add(panelBubbleNum);
-
-        JLabel timer = new JLabel("timer");
-        JLabel tools = new JLabel("tools");
-        tools.setLayout(new GridLayout(1, 3));
+        profile.setIcon(ElementLoader.getElementLoader().getImageMap().get("profile"));
+        profile.setBounds(0, 0, 10, 10);
+        main.gridx = 0;
+        main.gridy = 0;
+        this.add(profile, main);
         
-        JLabel control = new JLabel("control");
-        JButton pause = new JButton("PAUSE");
-        JButton resume = new JButton("resume");
-        control.add(pause);
-        control.add(resume);
 
-        this.add(playerStatus);
-        this.add(timer);
-        this.add(tools);
-        this.add(control);
+        // JLabel playerInfo = new JLabel("Player Status");
+        // playerInfo.setLayout(new GridBagLayout());
+        // GridBagConstraints info = new GridBagConstraints();
+
+        name = new JLabel("Name: Bazzy");
+        main.gridx = 1;
+        main.gridy = 0;
+        this.add(name, main);
+
+        //JLabel playerScore = new JLabel();
+        power = new JLabel("power: 1");
+        main.gridx = 0;
+        main.gridy = 1;
+        this.add(power, main);
+
+        bubNum = new JLabel("number: 1");
+        main.gridx = 1;
+        main.gridy = 1;
+        this.add(bubNum, main);
+        // this.setPanelBubbleNum(1);
+        // this.setPanelBubbleStrength(1);
+        // playerScore.setLayout(new GridLayout(2, 1));
+        // playerScore.add(power);
+        // playerScore.add(bubNum);
+
+        // main.gridx = 0;
+        // main.gridy = 1;
+        // playerInfo.add(, main);
+
+        // info.gridx = 1;
+        // info.gridy = 0;
+        // this.add(info, main);
+
+        JButton tools = new JButton("tools");
+        //tools.setLayout(new GridLayout(1, 3))
+        main.gridx = 0; main.gridy = 2;
+        this.add(tools, main);
+        
+        //JLabel control = new JLabel("control");
+        JButton pause = new JButton("PAUSE");
+        JButton resume = new JButton("RESUME");
+        main.gridx = 0; main.gridy = 3;
+        this.add(pause, main);
+        main.gridx = 1; main.gridy = 3;
+        this.add(resume, main);
+        //control.add(pause);
+        //control.add(resume);
+
+        // this.add(playerStatus);
+        // this.add(playerScore);
+        // //this.add(timer);
+        // this.add(tools);
+        // this.add(control);
 
     }
     
@@ -80,17 +112,15 @@ public class StatusPanel extends JPanel {
     // }
 
     public void setPanelBubbleNum(int num) {
-        this.panelBubbleNum.setText(String.valueOf(num));
-        System.out.println("in States" + String.valueOf(num));
+        this.bubNum.setText("number: " + String.valueOf(num));
     }
 
-    public String getPanelBubbleStrength(){
-        return String.valueOf(this.panelBubbleStrength);
-    } 
+    // public String getPanelBubbleStrength(){
+    //     return String.valueOf(this.panelBubbleStrength);
+    // } 
 
     public void setPanelBubbleStrength(int num){
-        this.panelBubbleStrength = num;
-
+        this.power.setText("power: " + String.valueOf(num));
     }
 
 }

@@ -16,8 +16,6 @@ import com.a225.model.manager.MoveTypeEnum;
 import com.a225.util.Utils;
 import com.a225.model.vo.Character;
 
-import com.a225.main.GameStart;
-
 
 /**
  * ÕÊº“¿‡
@@ -256,8 +254,6 @@ public class Player extends Character{
 			list.add(Bubble.createBubble(loc.get(0), loc.get(1), ElementLoader.getElementLoader().getGameInfoMap().get("bubble"),playerNum,getBubblePower()));
 			attack = false;
 			bubbleNum++;
-			GameStart.gameFrame.setPanelBubbleNum(bubbleNum);
-			GameStart.gameFrame.setPanelBubbleStrength(getBubblePower());
 
 		}
 	}

@@ -13,6 +13,7 @@ quit=img/bg/quit.jpg
 #Íæ¼Ò
 PlayerA=img/player/player1.png
 PlayerB=img/player/player2.png
+profile=img/player/playerProfile.jpg
 #Map µØÍ¼Â·¾¶
 mapFloor=img/map/1.png
 mapObstacle=img/map/2.png
