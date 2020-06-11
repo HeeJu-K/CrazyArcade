@@ -36,14 +36,13 @@ public class OverJPanel extends JPanel {
 	private void init() {
 
 		this.setLayout(null);
-		
 		JLabel jLabel = new JLabel(img);
 		img.setImage(img.getImage().getScaledInstance(w, h,Image.SCALE_DEFAULT ));
 		jLabel.setBounds(0, 0, w, h);
-		
+
 		JButton restart = new JButton();
 		restart.setIcon(ElementLoader.getElementLoader().getImageMap().get("restart"));
-		restart.setBounds(w/4, h-h/4, 256, 70);
+		restart.setBounds(w/6, h/6, 256, 60);
 		restart.setBorderPainted(false);
 		restart.setFocusPainted(false);
 		restart.setContentAreaFilled(false);
@@ -56,7 +55,7 @@ public class OverJPanel extends JPanel {
 		
 		JButton quit = new JButton();
 		quit.setIcon(ElementLoader.getElementLoader().getImageMap().get("quit"));
-		quit.setBounds(w/4 + 400, h-h/4, 256, 70);
+		quit.setBounds(w/6 + 400, h/6, 256, 70);
 		quit.setBorderPainted(false);
 		quit.setFocusPainted(false);
 		quit.setContentAreaFilled(false);
@@ -67,14 +66,14 @@ public class OverJPanel extends JPanel {
 			}
 		});
 
-
 		this.add(restart);
 		this.add(quit);
 		this.add(jLabel);
-	
 		
 		this.setVisible(true);
 		this.setOpaque(true);
+	
+	
 	}
 
 	public static JButton getResult() {

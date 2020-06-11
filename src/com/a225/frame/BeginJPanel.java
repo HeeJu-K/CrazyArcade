@@ -109,7 +109,7 @@ public class BeginJPanel extends JPanel{
 		});
 
 		JButton magicBoxButton = new JButton();
-		magicBoxButton.setIcon(new ImageIcon("img/bg/rect4.png"));
+		magicBoxButton.setIcon(new ImageIcon("img/bg/rect3.png"));
 		magicBoxButton.setBounds(w/6, h/6 + 400, 300, 80);
 		magicBoxButton.setBorderPainted(false);
 		magicBoxButton.setFocusPainted(false);

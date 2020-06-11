@@ -74,7 +74,6 @@ public class ElementManager {
 		initPriorityMap();//初始化图层优先级字典
 	}
 	
-	
 	//图层优先级比较器
 	public Comparator<String> getMapKeyComparator() {
 		return new Comparator<String>() {
@@ -114,11 +113,7 @@ public class ElementManager {
 	}
 	
 	public void loadMap(){
-		
-		//int mapNum = Integer.parseInt(ElementLoader.getElementLoader().getGameInfoMap().get("mapNum").get(0));
-		// gameMap.createMap("stage"+(Utils.random.nextInt(mapNum)+1)+"Map");
 		gameMap.createMap("stage"+GameController.seeMode()+"Map");
-		//System.out.println("mapNum"+mapNum+"rest"+(Utils.random.nextInt(mapNum)+1));
 	}
 
 	public void overGame(Boolean over) {
@@ -130,7 +125,5 @@ public class ElementManager {
 			//恭喜动画
 		}
 	}
-
-
 }
 
