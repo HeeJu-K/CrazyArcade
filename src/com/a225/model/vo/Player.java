@@ -70,25 +70,26 @@ public class Player extends Character{
 	//展示人物图片
 	@Override
 	public void showElement(Graphics g) {
-		if(isShowing==false) return;
-		else if (isNearDeath == true){
+		if (isNearDeath == true){
 			if (isShowing1 == true){
 				imgBubble1 = ElementLoader.getElementLoader().getImageMap().get("bubbleMode1");
-			g.drawImage(imgBubble1.getImage(),
-			getX(), getY(), 	//屏幕左上角坐标
-			getX()+getW(), getY()+getH(), 	//屏幕右下坐标
-			10, 10, 90, 90,
-			null);
-			}
-			else {
+				g.drawImage(imgBubble1.getImage(),
+				getX(), getY(), 	//屏幕左上角坐标
+				getX()+getW(), getY()+getH(), 	//屏幕右下坐标
+				10, 10, 90, 90,
+				null);
+				}
+			else if (isShowing2 == true){
 				imgBubble2 = ElementLoader.getElementLoader().getImageMap().get("bubbleMode2");
 				g.drawImage(imgBubble2.getImage(),
 				getX(), getY(), 	//屏幕左上角坐标
 				getX()+getW(), getY()+getH(), 	//屏幕右下坐标
 				10, 10, 90, 90,
 				null);
+				}
 			}
-		}
+			
+		if (isShowing == false) return;
 		else {
 			g.drawImage(img.getImage(), 
 			getX(), getY(), 	//屏幕左上角坐标

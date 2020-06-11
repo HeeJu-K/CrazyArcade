@@ -37,6 +37,7 @@ public class StatusPanel extends JPanel {
     private JLabel name;
     private JLabel power;
     private JLabel bubNum;
+    private int countNeedle = 3;
 
     StatusPanel(){
         List<SuperElement> list = ElementManager.getManager().getElementList("player");
@@ -77,17 +78,21 @@ public class StatusPanel extends JPanel {
         this.add(bubNum, main);
         
 
-        JButton tools = new JButton("Use Needle");
+        JButton tools = new JButton("Use Needle:" + countNeedle);
         tools.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-                List<SuperElement> playerList = ElementManager.getManager().getElementList("player");
-                // System.out.println("status panel player: " + playerList.get(0));
-                ((Player)(playerList.get(0))).setNeedle(true);
-                // this.gameJPanel.setFocusable(true);
-			    //this.gameJPanel.requestFocusInWindow();
-                GameStart.gameFrame.gameJPanel.setFocusable(true);
-                GameStart.gameFrame.gameJPanel.requestFocusInWindow();
+                if (countNeedle != 0){
+                    countNeedle--;
+                    tools.setText("Use Needle" + countNeedle);
+                    List<SuperElement> playerList = ElementManager.getManager().getElementList("player");
+                    // System.out.println("status panel player: " + playerList.get(0));
+                    ((Player)(playerList.get(0))).setNeedle(true);
+                    // this.gameJPanel.setFocusable(true);
+                    //this.gameJPanel.requestFocusInWindow();
+                    GameStart.gameFrame.gameJPanel.setFocusable(true);
+                    GameStart.gameFrame.gameJPanel.requestFocusInWindow();
+                }
 			}
 		});
         main.gridx = 0; main.gridy = 2;

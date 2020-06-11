@@ -68,8 +68,10 @@ public class Character extends SuperElement{
 		heathPoint += change;
 //		生命值为0，死亡
 		if(heathPoint<=0) {
-			setBubble(true);
+			//setBubble(true);
+			speed = (int)(speed/4);
 			setNearDeath(true);
+			setNeedle(false);
 		}
 	}
 
@@ -197,28 +199,32 @@ public class Character extends SuperElement{
 
 	public void setNearDeath(boolean bool){
 			this.isNearDeath = bool;
-			int lastTime = 10;
+			int lastTime = 5;
 			//System.out.println("set Near Death in char");
 			//isNearDeath = true;
+			//setNeedle(false);
 			//nearDeathCount++;
 			nearDeathChangeImg(lastTime);
 			Timer timer = new Timer(true);
 			TimerTask task = new TimerTask() {
 				@Override
 				public void run() {
-					
+					System.out.println(usedNeedle);
 					//System.out.println("set Near Death is dead");
 					//this.speed = speed/4;
 					if(!usedNeedle) {
-						
-						setDead(true);
+						if (isNearDeath)
+							setDead(true);
 					} else {
 						isShowing = true;
-						//usedNeedle = false;
+						speed = INIT_SPEED;
+						//usedNeedle --;
 						//setAlive(true);
-						setNeedle(false);
-						isNearDeath = false;
+						//setNearDeath(false);
+						//isNearDeath = false;
 						System.out.println("needle is used");
+						//update();
+						//updateImage();
 					}
 					
 				}
@@ -234,19 +240,20 @@ public class Character extends SuperElement{
         	int count = 0;
             @Override
 			public void run() {
-				if(usedNeedle) {
+				if(usedNeedle == true) {
 					isShowing = true;
 					isShowing1 = false;
 					isShowing2 = false;
 					this.cancel();
 				} else {
 					count++;
+					isShowing = false;
 					isShowing1 = true;
 					isShowing2 = false;
 					if(count == times) {
-						count = 0;
-						isShowing1 = false;
-						isShowing2 = true;//重置为可以显示
+						//count = 0;
+						// isShowing1 = false;
+						// isShowing2 = true;//重置为可以显示
 						this.cancel();
 					}
 				}
@@ -256,20 +263,25 @@ public class Character extends SuperElement{
 			int count = 0;
 			@Override
 			public void run() {
-				if(usedNeedle) {
+				if(usedNeedle == true ) {
+					isShowing1 = false;
+					isShowing2 = false;
+					isShowing = true;
 					this.cancel();
 				} else {
+					isShowing = false;
+					isShowing1 = false;
 					isShowing2 = true;
 					count++;
 					if(count == times) {
-						count = 0;
+						//count = 0;
 						this.cancel();
 					}
 				}
 			}
         };
-        timer.scheduleAtFixedRate(task1, 0, 1000);//0延迟，每500ms调用一次
-	    timer.scheduleAtFixedRate(task2, 0, 1000);//0延迟，每100ms调用一次
+        timer.scheduleAtFixedRate(task1, 0, 500);//0延迟，每500ms调用一次
+	    timer.scheduleAtFixedRate(task2, 0, 100);//0延迟，每100ms调用一次
 	}
 	
 	public void bubbleAddPower() {
@@ -293,8 +305,12 @@ public class Character extends SuperElement{
 	}
 
 	public void setNeedle(boolean used) {
+		// if (used) {
+		// 	this.usedNeedle++;
+		// } else {
+		// 	this.usedNeedle--;
+		// }
 		this.usedNeedle = used;
-		System.out.println("setNeedle: " + used);
 	}
 
 	public boolean isDead() {
