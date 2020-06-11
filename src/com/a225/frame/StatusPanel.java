@@ -3,6 +3,8 @@ package com.a225.frame;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -13,6 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.*;
 
 import com.a225.main.GameController;
+import com.a225.main.GameStart;
+import com.a225.frame.GameFrame;
+import com.a225.frame.GameJPanel;
 import com.a225.model.manager.ElementManager;
 import com.a225.model.vo.MapSquare;
 import com.a225.model.vo.Player;
@@ -70,22 +75,21 @@ public class StatusPanel extends JPanel {
         main.gridx = 1;
         main.gridy = 1;
         this.add(bubNum, main);
-        // this.setPanelBubbleNum(1);
-        // this.setPanelBubbleStrength(1);
-        // playerScore.setLayout(new GridLayout(2, 1));
-        // playerScore.add(power);
-        // playerScore.add(bubNum);
+        
 
-        // main.gridx = 0;
-        // main.gridy = 1;
-        // playerInfo.add(, main);
-
-        // info.gridx = 1;
-        // info.gridy = 0;
-        // this.add(info, main);
-
-        JButton tools = new JButton("tools");
-        //tools.setLayout(new GridLayout(1, 3))
+        JButton tools = new JButton("Use Needle");
+        tools.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+                List<SuperElement> playerList = ElementManager.getManager().getElementList("player");
+                // System.out.println("status panel player: " + playerList.get(0));
+                ((Player)(playerList.get(0))).setNeedle(true);
+                // this.gameJPanel.setFocusable(true);
+			    //this.gameJPanel.requestFocusInWindow();
+                GameStart.gameFrame.gameJPanel.setFocusable(true);
+                GameStart.gameFrame.gameJPanel.requestFocusInWindow();
+			}
+		});
         main.gridx = 0; main.gridy = 2;
         this.add(tools, main);
         
@@ -114,10 +118,6 @@ public class StatusPanel extends JPanel {
     public void setPanelBubbleNum(int num) {
         this.bubNum.setText("number: " + String.valueOf(num));
     }
-
-    // public String getPanelBubbleStrength(){
-    //     return String.valueOf(this.panelBubbleStrength);
-    // } 
 
     public void setPanelBubbleStrength(int num){
         this.power.setText("power: " + String.valueOf(num));

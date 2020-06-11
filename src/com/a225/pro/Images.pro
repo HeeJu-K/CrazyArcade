@@ -14,6 +14,8 @@ quit=img/bg/quit.jpg
 PlayerA=img/player/player1.png
 PlayerB=img/player/player2.png
 profile=img/player/playerProfile.jpg
+bubbleMode1=img/player/bubbleMode1.png
+bubbleMode2=img/player/bubbleMode2.png
 #Map µØÍ¼Â·¾¶
 mapFloor=img/map/1.png
 mapObstacle=img/map/2.png
@@ -36,8 +38,7 @@ explodeDown=img/boom/down.png
 explodeLeft=img/boom/left.png
 explodeRight=img/boom/right.png
 explodeCenter=img/boom/center.png
-bubbleMode1=img/boom/bubbleMode1.png
-bubbleMode2=img/boom/bubbleMode2.png
+
 
 #npcAÍ¼Æ¬Â·¾¶
 npcA0=img/computer/1/down.png

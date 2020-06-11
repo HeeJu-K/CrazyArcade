@@ -17,7 +17,7 @@ import com.a225.thread.GameThread;
 public class GameFrame extends JFrame {
 	private JPanel contentPane;//主面板
 	private BeginJPanel beginJPanel;//开始画板
-	private GameJPanel gameJPanel;//画板
+	public GameJPanel gameJPanel;//画板
 	private OverJPanel overJPanel;//结束画板
 	private KeyListener keyListener; //游戏按键
 	private CardLayout layout;//卡片布局

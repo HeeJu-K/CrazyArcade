@@ -26,6 +26,8 @@ import com.a225.model.vo.Character;
  */
 public class Player extends Character{
 	private ImageIcon img;
+	private ImageIcon imgBubble1;
+	private ImageIcon imgBubble2;
 	private int moveX;
 	private int moveY;
 	private boolean attack;//记录攻击状态，默认为false
@@ -69,12 +71,33 @@ public class Player extends Character{
 	@Override
 	public void showElement(Graphics g) {
 		if(isShowing==false) return;
-		g.drawImage(img.getImage(), 
+		else if (isNearDeath == true){
+			if (isShowing1 == true){
+				imgBubble1 = ElementLoader.getElementLoader().getImageMap().get("bubbleMode1");
+			g.drawImage(imgBubble1.getImage(),
+			getX(), getY(), 	//屏幕左上角坐标
+			getX()+getW(), getY()+getH(), 	//屏幕右下坐标
+			10, 10, 90, 90,
+			null);
+			}
+			else {
+				imgBubble2 = ElementLoader.getElementLoader().getImageMap().get("bubbleMode2");
+				g.drawImage(imgBubble2.getImage(),
 				getX(), getY(), 	//屏幕左上角坐标
 				getX()+getW(), getY()+getH(), 	//屏幕右下坐标
-				(moveX/6)*100+27, moveY*100+43, 			//图片左上坐标
-				(moveX/6)*100+72, moveY*100+99, 			//图片右下坐标
+				10, 10, 90, 90,
 				null);
+			}
+		}
+		else {
+			g.drawImage(img.getImage(), 
+			getX(), getY(), 	//屏幕左上角坐标
+			getX()+getW(), getY()+getH(), 	//屏幕右下坐标
+			(moveX/6)*100+27, moveY*100+43, 			//图片左上坐标
+			(moveX/6)*100+72, moveY*100+99, 			//图片右下坐标
+			null);
+		}
+	
 		
 		//显示分数
 		String string = "Player" + Integer.toString(playerNum+1)+": " + Integer.toString(score);

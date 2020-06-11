@@ -33,7 +33,13 @@ public class Character extends SuperElement{
 	protected int heathPoint;//玩家生命值
 	protected boolean isUnstoppable;//玩家是否获得无敌
 	protected int unstoppableCount;//无敌卡数量
+	protected boolean isNearDeath;
+	protected int nearDeathCount;
+	protected boolean usedNeedle = false;
+
 	protected boolean isShowing;//是否要展示元素
+	protected boolean isShowing1;
+	protected boolean isShowing2;
 
 	public Character(int x, int y, int w, int h) {
 		super(x, y, w, h);
@@ -51,6 +57,7 @@ public class Character extends SuperElement{
 		speed = INIT_SPEED;
 		score = 0;
 		dead = false;
+		this.usedNeedle = false;
 	}
 	
 	public void setHealthPoint(int change) {
@@ -62,36 +69,10 @@ public class Character extends SuperElement{
 //		生命值为0，死亡
 		if(heathPoint<=0) {
 			setBubble(true);
-			setNearDeath();
+			setNearDeath(true);
 		}
 	}
 
-	public void setNearDeath(){
-		if (isBubble() == true){
-			// speed = speed/4;
-			// Timer timer = new Timer(true);
-			// speedItemCount++;
-			// TimerTask task = new TimerTask() {
-			// 	@Override
-			// 	public void run() {
-			// 		speedItemCount--;
-			// 		if(speedItemCount==0) {
-			// 			setDead(true);
-			// 			setX(-100);
-			// 			setY(-100);					
-			// 		}
-			// 	}
-			// };
-			// timer.schedule(task, 50000000);
-			// long startTime = System.currentTimeMillis(); //程序开始记录时间
-			// while ( System.currentTimeMillis() - startTime < 500){
-			// 	System.out.println( System.currentTimeMillis() - startTime);
-			// }
-			setDead(true);
-			setX(-100);
-			setY(-100);
-		}
-	}
 
 
 	//	改变一段时间的移动速度,传入速度需要提升的倍数和持续的时间（秒）
@@ -135,8 +116,7 @@ public class Character extends SuperElement{
 		List<SuperElement> playerList = ElementManager.getManager().getElementList("player");
 		for (int i = 0; i < playerList.size(); i++) {
 			Player player = (Player) playerList.get(i);
-			if(player!=this)
-			{
+			if(player!=this){
 				player.setSpeed(0);
 				setSpeedToInital(lastTime,player);
 			}
@@ -144,8 +124,7 @@ public class Character extends SuperElement{
 		List<SuperElement> NPCList = ElementManager.getManager().getElementList("npc");
 		for (int i = 0; i < NPCList.size(); i++) {
 			Npc npc = (Npc) NPCList.get(i);
-			if(npc!=this)
-			{
+			if(npc!=this){
 				npc.setSpeed(0);
 				setSpeedToInital(lastTime,npc);
 			}
@@ -215,6 +194,83 @@ public class Character extends SuperElement{
         timer.scheduleAtFixedRate(task1, 0, 500);//0延迟，每500ms调用一次
 	    timer.scheduleAtFixedRate(task2, 0, 100);//0延迟，每100ms调用一次
 	}
+
+	public void setNearDeath(boolean bool){
+			this.isNearDeath = bool;
+			int lastTime = 10;
+			//System.out.println("set Near Death in char");
+			//isNearDeath = true;
+			//nearDeathCount++;
+			nearDeathChangeImg(lastTime);
+			Timer timer = new Timer(true);
+			TimerTask task = new TimerTask() {
+				@Override
+				public void run() {
+					
+					//System.out.println("set Near Death is dead");
+					//this.speed = speed/4;
+					if(!usedNeedle) {
+						
+						setDead(true);
+					} else {
+						isShowing = true;
+						//usedNeedle = false;
+						//setAlive(true);
+						setNeedle(false);
+						isNearDeath = false;
+						System.out.println("needle is used");
+					}
+					
+				}
+			};
+			timer.schedule(task,lastTime*1000);
+		
+	}
+
+	public void nearDeathChangeImg(final int lastTime) {
+		Timer timer = new Timer();
+        final int times = lastTime*1000/100;//次数
+        TimerTask task1 = new TimerTask() {// 图片消失
+        	int count = 0;
+            @Override
+			public void run() {
+				if(usedNeedle) {
+					isShowing = true;
+					isShowing1 = false;
+					isShowing2 = false;
+					this.cancel();
+				} else {
+					count++;
+					isShowing1 = true;
+					isShowing2 = false;
+					if(count == times) {
+						count = 0;
+						isShowing1 = false;
+						isShowing2 = true;//重置为可以显示
+						this.cancel();
+					}
+				}
+            }
+        };
+		TimerTask task2 =  new TimerTask() {//图片出现
+			int count = 0;
+			@Override
+			public void run() {
+				if(usedNeedle) {
+					this.cancel();
+				} else {
+					isShowing2 = true;
+					count++;
+					if(count == times) {
+						count = 0;
+						this.cancel();
+					}
+				}
+			}
+        };
+        timer.scheduleAtFixedRate(task1, 0, 1000);//0延迟，每500ms调用一次
+	    timer.scheduleAtFixedRate(task2, 0, 1000);//0延迟，每100ms调用一次
+	}
 	
 	public void bubbleAddPower() {
 		bubblePower++;
@@ -234,6 +290,11 @@ public class Character extends SuperElement{
 	
 	public void setBubble(boolean bubbleMode){
 		this.bubbleMode = bubbleMode;
+	}
+
+	public void setNeedle(boolean used) {
+		this.usedNeedle = used;
+		System.out.println("setNeedle: " + used);
 	}
 
 	public boolean isDead() {
